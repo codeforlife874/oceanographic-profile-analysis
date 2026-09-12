@@ -41,7 +41,29 @@ The generated profiles show how physical water properties change with increasing
 - Matplotlib
 - NetCDF
 - Linux / WSL2
+## Results
 
+The analyzed CTD profile spans a pressure range of 2–1001 dbar.
+
+### Temperature
+
+- Surface temperature: 28.23 °C
+- Deepest measured temperature: 4.57 °C
+- Temperature decreases substantially with increasing pressure.
+- The strongest temperature gradient occurs at 122 dbar, with a gradient of approximately -0.653 °C/dbar.
+
+The pronounced temperature transition around 122 dbar indicates a strong thermocline-region structure in the sampled upper ocean.
+
+### Salinity
+
+- Surface salinity: 35.01
+- Deepest measured salinity: 34.56
+- Salinity varies non-uniformly through the water column.
+- The strongest salinity gradient occurs at approximately 118 dbar, with a gradient of -0.0305/dbar.
+
+The temperature and salinity profiles both exhibit pronounced changes in approximately the same upper-ocean pressure range.
+
+![Oceanographic Profiles](figures/ocean_profile.png)
 ## Project Structure
 
 ```text
