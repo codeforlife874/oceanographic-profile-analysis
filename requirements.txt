@@ -3,6 +3,7 @@ cftime==1.6.5
 contourpy==1.4.0
 cycler==0.12.1
 fonttools==4.65.0
+gsw==3.6.23
 kiwisolver==1.5.1
 matplotlib==3.11.2
 netCDF4==1.7.4

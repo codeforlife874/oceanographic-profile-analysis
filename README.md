@@ -10,7 +10,15 @@ The analysis examines how temperature and salinity vary with pressure through th
 
 The dataset is a CTD profile from NOAA's National Data Buoy Center (NDBC).
 
-- Platform: TAO mooring
+## Methodology
+
+1. Load the NOAA CTD NetCDF dataset using `xarray`.
+2. Extract pressure, temperature, and salinity measurements.
+3. Convert pressure to approximate depth using the TEOS-10 Gibbs SeaWater (`gsw`) library and the profile latitude.
+4. Calculate temperature and salinity gradients with respect to pressure.
+5. Identify the pressure corresponding to the strongest temperature gradient.
+6. Visualize temperature and salinity profiles against approximate depth.
+7. Save the resulting visualization as a high-resolution PNG.- Platform: TAO mooring
 - Site: KA-09-01
 - Location: 2.02°N, 155°W
 - Date: 11 May 2009
@@ -18,21 +26,6 @@ The dataset is a CTD profile from NOAA's National Data Buoy Center (NDBC).
 - Data format: NetCDF
 
 The dataset contains pressure, temperature, and salinity measurements.
-
-## Methodology
-
-1. Load the NOAA NetCDF dataset using `xarray`.
-2. Extract pressure, temperature, and salinity variables.
-3. Analyze the vertical profiles.
-4. Plot temperature and salinity against pressure using Matplotlib.
-5. Save the resulting visualization as a high-resolution PNG.
-
-## Results
-
-The generated profiles show how physical water properties change with increasing pressure through the sampled water column.
-
-![Oceanographic Profiles](figures/ocean_profile.png)
-
 ## Technologies
 
 - Python
@@ -40,26 +33,30 @@ The generated profiles show how physical water properties change with increasing
 - NumPy
 - Matplotlib
 - NetCDF
+- Gibbs SeaWater (GSW / TEOS-10)
 - Linux / WSL2
 ## Results
 
-The analyzed CTD profile spans a pressure range of 2–1001 dbar.
+The analyzed CTD profile spans a pressure range of 2–1001 dbar, corresponding to an approximate depth range of 2–993 m.
 
 ### Temperature
 
 - Surface temperature: 28.23 °C
 - Deepest measured temperature: 4.57 °C
-- Temperature decreases substantially with increasing pressure.
-- The strongest temperature gradient occurs at 122 dbar, with a gradient of approximately -0.653 °C/dbar.
+- Maximum temperature: 28.24 °C
+- Minimum temperature: 4.57 °C
+- Strongest temperature gradient: -0.6530 °C/dbar at 122 dbar
+- Approximate depth of strongest temperature gradient: 121 m
 
-The pronounced temperature transition around 122 dbar indicates a strong thermocline-region structure in the sampled upper ocean.
+The pronounced temperature transition around 121 m indicates a strong thermocline-region structure in the sampled upper ocean.
 
 ### Salinity
 
 - Surface salinity: 35.01
-- Deepest measured salinity: 34.56
-- Salinity varies non-uniformly through the water column.
-- The strongest salinity gradient occurs at approximately 118 dbar, with a gradient of -0.0305/dbar.
+- Deepest salinity: 34.56
+- Minimum salinity: 34.55
+- Maximum salinity: 35.14
+- Strongest salinity gradient: -0.0305/dbar at approximately 118 dbar
 
 The temperature and salinity profiles both exhibit pronounced changes in approximately the same upper-ocean pressure range.
 

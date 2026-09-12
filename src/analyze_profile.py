@@ -1,6 +1,6 @@
 import xarray as xr
 import numpy as np
-
+import gsw
 # Load dataset
 ds = xr.open_dataset("data/profile.nc")
 
@@ -8,7 +8,9 @@ ds = xr.open_dataset("data/profile.nc")
 pressure = ds["PRES"].values
 temperature = ds["TEMP0"].values
 salinity = ds["PSAL0"].values
-
+# Convert pressure to approximate depth using TEOS-10
+latitude = float(ds["LATITUDE"].values.squeeze())
+depth = -gsw.z_from_p(pressure, latitude)
 # Remove missing values
 valid_temp = ~np.isnan(temperature)
 valid_sal = ~np.isnan(salinity)
@@ -30,7 +32,7 @@ deep_sal = salinity[-1]
 print("\n--- Oceanographic Profile Analysis ---\n")
 
 print(f"Pressure range: {pressure.min():.1f} - {pressure.max():.1f} dbar")
-
+print(f"Approximate depth range: {depth.min():.1f} - {depth.max():.1f} m")
 print(f"\nTemperature:")
 print(f"  Surface: {surface_temp:.2f} °C")
 print(f"  Deepest: {deep_temp:.2f} °C")
